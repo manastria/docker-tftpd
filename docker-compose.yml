@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  tftp:
+    build: .
+    container_name: serveur-tftp
+    image: mon-serveur-tftp
+    # Utilise directement le réseau de l'hôte. Simple, fiable et performant pour un labo.
+    network_mode: "host"
+    volumes:
+      # Le dossier ./tftp-data contiendra les fichiers, comme les configs du routeur.
+      - ./tftp-data:/srv/tftp
+    restart: unless-stopped
